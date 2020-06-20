@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 p-10 text-center text-white">
+  <header>
+    <h1 class="text-4xl font-bold">URL Shortener</h1>
+  </header>
+
+  <main id="app">
+    <form @submit.prevent="createUrl()" v-if="formVisible" class="text-lg">
+      <div class="my-4">
+        <label for="url">URL</label>
+        <input type="text" v-model="url" type="text" name="url" id="url"
+          class="text-sm sm:text-base relative bg-gray-700 rounded-lg focus:outline-none focus:shadow-none py-2 px-2 w-56"
+          placeholder="http://www.example.com">
+      </div>
+      <div class="my-4">
+        <label for="slug">Slug</label>
+        <input v-model="slug" type="text" name="slug" id="slug"
+          class="text-sm sm:text-base relative bg-gray-700 rounded-lg focus:outline-none focus:shadow-none py-2 px-2 w-56"
+          placeholder="Slug">
+      </div>
+      
+      <button type="submit"
+       class="bg-gray-100 hover:bg-gray-300 text-gray-600 hover:text-gray-900 py-2 sm:py-3 px-4 border border-gray-400 hover:border-transparent rounded ml-2 sm:ml-4 focus:outline-none">Create</button>
+    </form>
+    <pre v-if="created" v-cloak>
+      <p class="created">Your short url is: <a :href="created">{{created}}</a></p>
+    </pre>
+  </main>
+  <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
